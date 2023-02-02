@@ -20,8 +20,9 @@
                             <td>{{ empleado.nombre }}</td>
                             <td>{{ empleado.correo }}</td>
                             <td>
-                                <a class="btn btn-primary" href="#" role="button">Editar</a>
-                                <a class="btn btn-primary" href="#" role="button">Borrar</a>
+                                <div class="btn-group" role="group" aria-label="">
+                                    <router-link :to="{name:'Editar', params:{id:empleado.id}}" class="btn btn-info">Editar</router-link>
+                                    <button type="button" v-on:click="borrarEmpleado(empleado.id)" class="btn btn-danger">Borrar</button>                                </div>
                             </td>
                         </tr>
 
@@ -56,6 +57,18 @@ export default {
 
                         this.empleados = datosRespuesta;
                     }
+
+
+                })
+                .catch(console.log)
+        },
+        borrarEmpleado(id){
+            fetch('http://localhost/empleados/?borrar='+id)
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+
+                    console.log(datosRespuesta)
+                    window.location.href="listar"
 
 
                 })
