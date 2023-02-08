@@ -49,9 +49,10 @@
                         class="form-control" required name="provincia" v-model="cliente.provincia" id="provincia" aria-describedby="helpId" placeholder="Provincia">
                       <small id="helpId" class="form-text text-muted">Escribe el provincia</small>
                     </div>
+                    
                     <div class="mb-3">
                       <label for="tipo" class="form-label">Tipo de cliente:</label>
-                      <select required name="tipo" id="tipo" v-model="cliente.tipo" class="form-select" aria-label="Default select example">
+                      <select v-model="cliente.tipo" required name="tipo" id="tipo" class="form-select" aria-label="Default select example">
                         <option disabled selected>Elija un tipo</option>
                         <option value="Particular">Particular</option>
                         <option value="Empresa">Empresa</option>
@@ -62,11 +63,8 @@
                         <button type="submit" class="btn btn-success">Aceptar</button>
                         <router-link :to="{name:'login'}" class="btn btn-warning">Cancelar</router-link>
                     </div>
-
                 </form>
-
             </div>
-            
         </div>
     </div>
 </template>
