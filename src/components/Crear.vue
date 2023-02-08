@@ -74,7 +74,7 @@
 <script>
 export default {
     data(){
-        return{
+        return {
             cliente:{
 
             }
@@ -82,8 +82,8 @@ export default {
     },
     methods:{
         agregarRegistro(){
-            var datosEnviar={nombre:this.cliente.nombre, apellido:this.cliente.apellido, telefono:this.cliente.telefono, localidad:this.cliente.localidad, 
-                codigo_postal:this.cliente.codigo_postal, provincia:this.cliente.provincia, tipo:this.cliente.tipo}
+            var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, localidad: this.cliente.localidad, 
+                codigo_postal: this.cliente.codigo_postal, provincia: this.cliente.provincia, tipo: this.cliente.tipo}
 
             fetch('http://localhost/user/?insertar', {
                 method:"POST",
