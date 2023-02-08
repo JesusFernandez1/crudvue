@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <div class="card-header">
-                Empleados
+                Usuarios
             </div>
             <div class="card-body">
                 <table class="table">
@@ -10,19 +10,25 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Correo</th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="empleado in empleados" :key="empleado.id">
-                            <td>{{ empleado.id }}</td>
-                            <td>{{ empleado.nombre }}</td>
-                            <td>{{ empleado.correo }}</td>
+                        <tr v-for="usuario in usuarios" :key="usuario.id">
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.nombre }}</td>
+                            <td>{{ usuario.apellido }}</td>
+                            <td>{{ usuario.telefono }}</td>
+                            <td>{{ usuario.tipo }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
-                                    <router-link :to="{name:'Editar', params:{id:empleado.id}}" class="btn btn-info">Editar</router-link>
-                                    <button type="button" v-on:click="borrarEmpleado(empleado.id)" class="btn btn-danger">Borrar</button>                                </div>
+                                    <router-link :to="{ name: 'Editar', params: { id: usuario.id } }"
+                                        class="btn btn-info">Editar</router-link>
+                                    <button type="button" v-on:click="borrarusuario(usuario.id)"
+                                        class="btn btn-danger">Borrar</button>
+                                </div>
                             </td>
                         </tr>
 
@@ -38,7 +44,7 @@ export default {
     data() {
 
         return {
-            empleados: []
+            usuarios: []
         }
     },
     created: function () {
@@ -46,29 +52,29 @@ export default {
     },
     methods: {
         consultarEmpelados() {
-            fetch('http://localhost/empleados/')
+            fetch('http://localhost/user/')
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
 
                     console.log(datosRespuesta)
-                    this.empleados = []
+                    this.usuarios = []
                     if (typeof datosRespuesta[0].success === 'undefined') {
 
-                        this.empleados = datosRespuesta;
+                        this.usuarios = datosRespuesta;
                     }
 
 
                 })
                 .catch(console.log)
         },
-        borrarEmpleado(id){
-            fetch('http://localhost/empleados/?borrar='+id)
+        borrarusuario(id) {
+            fetch('http://localhost/usuarios/?borrar=' + id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
                     console.log(datosRespuesta)
-                    window.location.href="listar"
+                    window.location.href = "listar"
 
 
                 })

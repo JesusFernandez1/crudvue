@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/crear">Crear</router-link> |
-    <router-link to="/editar">Editar</router-link> |
-    <router-link to="/listar">Listar</router-link>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/login">Login</router-link>
+    <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
 </template>

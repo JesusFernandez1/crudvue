@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Crear from '../components/Crear.vue'
-import Editar from '../components/Editar.vue'
+import Login from '../components/Login.vue'
 import Listar from '../components/Listar.vue'
 
 const routes = [
@@ -11,21 +10,15 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/crear',
-    name: 'Crear',
-    component: Crear
-  },
-  {
-    path: '/editar/:id',
-    name: 'Editar',
-    component: Editar
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/listar',
-    name: 'Listar',
+    name: 'listar',
     component: Listar
   },
-
   {
     path: '/about',
     name: 'about',
