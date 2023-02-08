@@ -85,7 +85,7 @@ export default {
             var datosEnviar={nombre:this.cliente.nombre, apellido:this.cliente.apellido, telefono:this.cliente.telefono, localidad:this.cliente.localidad, 
                 codigo_postal:this.cliente.codigo_postal, provincia:this.cliente.provincia, tipo:this.cliente.tipo}
 
-            fetch('http://localhost/user/?insertar=1', {
+            fetch('http://localhost/user/?insertar', {
                 method:"POST",
                 body:JSON.stringify(datosEnviar)
             })

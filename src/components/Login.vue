@@ -72,9 +72,7 @@ export default {
         registerUsuario(){
             window.location.href = 'crear';
         }
-
     }
-
 }
 </script>
 
