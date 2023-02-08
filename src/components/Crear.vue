@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Agregar nuevo empleado
+                Nuevo cliente
             </div>
             <div class="card-body">
                 
@@ -11,20 +11,56 @@
                     <div class="mb-3">
                       <label for="nombre" class="form-label">Nombre:</label>
                       <input type="text"
-                        class="form-control" required name="nombre" v-model="empleado.nombre" id="nombre" aria-describedby="helpId" placeholder="Nombre">
+                        class="form-control" required name="nombre" v-model="cliente.nombre" id="nombre" aria-describedby="helpId" placeholder="Nombre">
                       <small id="helpId" class="form-text text-muted">Escribe el nombre</small>
                     </div>
 
                     <div class="mb-3">
-                      <label for="correo" class="form-label">Correo</label>
-                      <input type="email"
-                        class="form-control" required name="correo" v-model="empleado.correo" id="correo" aria-describedby="helpId" placeholder="Correo">
-                      <small id="helpId" class="form-text text-muted">Escribe el correo</small>
+                      <label for="apellido" class="form-label">Apellido:</label>
+                      <input type="text"
+                        class="form-control" required name="apellido" v-model="cliente.apellido" id="apellido" aria-describedby="helpId" placeholder="Apellido">
+                      <small id="helpId" class="form-text text-muted">Escribe el apellido</small>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="telefono" class="form-label">Telefono:</label>
+                      <input type="text"
+                        class="form-control" required name="telefono" v-model="cliente.apellido" id="telefono" aria-describedby="helpId" placeholder="Telefono">
+                      <small id="helpId" class="form-text text-muted">Escribe el telefono</small>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="localidad" class="form-label">Localidad:</label>
+                      <input type="text"
+                        class="form-control" required name="localidad" v-model="cliente.apellido" id="localidad" aria-describedby="helpId" placeholder="Localidad">
+                      <small id="helpId" class="form-text text-muted">Escribe el localidad</small>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="codigo_postal" class="form-label">Codigo Postal:</label>
+                      <input type="text"
+                        class="form-control" required name="codigo_postal" v-model="cliente.codigo_postal" id="codigo_postal" aria-describedby="helpId" placeholder="Codigo Postal">
+                      <small id="helpId" class="form-text text-muted">Escribe el codgio Postal</small>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="provincia" class="form-label">Provincia:</label>
+                      <input type="text"
+                        class="form-control" required name="provincia" v-model="cliente.provincia" id="provincia" aria-describedby="helpId" placeholder="Provincia">
+                      <small id="helpId" class="form-text text-muted">Escribe el provincia</small>
+                    </div>
+                    <div class="mb-3">
+                      <label for="tipo" class="form-label">Tipo de cliente:</label>
+                      <select required name="tipo" id="tipo" v-model="cliente.tipo" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Elija un tipo</option>
+                        <option value="Particular">Particular</option>
+                        <option value="Empresa">Empresa</option>
+                        </select>
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Button group name">
                         <button type="submit" class="btn btn-success">Aceptar</button>
-                        <router-link :to="{name:'Listar'}" class="btn btn-warning">Cancelar</router-link>
+                        <router-link :to="{name:'login'}" class="btn btn-warning">Cancelar</router-link>
                     </div>
 
                 </form>
@@ -39,25 +75,28 @@
 export default {
     data(){
         return{
-            empleado:{
+            cliente:{
 
             }
         }
     },
     methods:{
         agregarRegistro(){
-            var datosEnviar={nombre:this.empleado.nombre, correo:this.empleado.correo}
+            var datosEnviar={nombre:this.cliente.nombre, apellido:this.cliente.apellido, telefono:this.cliente.telefono, localidad:this.cliente.localidad, 
+                codigo_postal:this.cliente.codigo_postal, provincia:this.cliente.provincia, tipo:this.cliente.tipo}
 
-            fetch('http://localhost/empleados/?insertar=1', {
+            fetch('http://localhost/user/?insertar=1', {
                 method:"POST",
                 body:JSON.stringify(datosEnviar)
             })
             .then(respuesta => respuesta.json())
-            .then((datosRespuesta=>{
-
-                console.log(datosRespuesta);
-                window.location.href='listar';
-            }))
+            .then((datosRespuesta => {
+                    console.log(JSON.stringify(datosRespuesta)[11])
+                    if (JSON.stringify(datosRespuesta)[11] == 1) {
+                        window.location.href = 'login';
+                    } 
+                    
+                }))
         }
     }
     

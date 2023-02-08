@@ -15,7 +15,7 @@
                                         <div class="form-outline form-white mb-4">
                                             <input type="text" v-model="usuario.correo" id="correo"
                                                 class="form-control form-control-lg" required name="correo" />
-                                            <label class="form-label" for="typecorreoX">correo</label>
+                                            <label class="form-label" for="typecorreoX">Correo</label>
                                         </div>
                                         <div class="form-outline form-white mb-4">
                                             <input type="password" v-model="usuario.pass" id="pass"
@@ -69,7 +69,11 @@ export default {
                     } 
                     
                 }))
+        },
+        registerUsuario(){
+            window.location.href = 'crear';
         }
+
     }
 
 }
