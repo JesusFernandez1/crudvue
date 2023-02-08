@@ -28,13 +28,14 @@
                                         <button type="submit" class="btn btn-success">Aceptar</button>
                                     </form>
                                 </div>
+                                <form v-on:submit.prevent="registerUsuario()">
                                 <div>
                                     <p class="mb-0">
                                         Don't have an account?
-                                        <a href="#" class="text-white-50 fw-bold">Sign Up</a>
+                                        <input type="submit" name="register" id="register" value="Sing Up">
                                     </p>
                                 </div>
-
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -86,5 +87,9 @@ export default {
     background: linear-gradient(to right,
             rgba(106, 17, 203, 1),
             rgba(37, 117, 252, 1));
+}
+#register {
+    background:none;
+    border: none;
 }
 </style>
