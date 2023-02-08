@@ -13,9 +13,9 @@
                                     </p>
                                     <form v-on:submit.prevent="loginUsuario()">
                                         <div class="form-outline form-white mb-4">
-                                            <input type="text" v-model="usuario.email" id="email"
-                                                class="form-control form-control-lg" required name="email" />
-                                            <label class="form-label" for="typeEmailX">Email</label>
+                                            <input type="text" v-model="usuario.correo" id="correo"
+                                                class="form-control form-control-lg" required name="correo" />
+                                            <label class="form-label" for="typecorreoX">correo</label>
                                         </div>
                                         <div class="form-outline form-white mb-4">
                                             <input type="password" v-model="usuario.pass" id="pass"
@@ -55,16 +55,18 @@ export default {
     },
     methods: {
         loginUsuario() {
-            var datosEnviar = { email: this.usuario.email, pass: this.usuario.pass }
+            var datosEnviar = { correo: this.usuario.correo, pass: this.usuario.pass }
             fetch('http://localhost/user/?login', {
                 method: "POST",
                 body: JSON.stringify(datosEnviar)
             })
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta => {
-
-                    console.log(datosRespuesta);
-                    window.location.href = 'listar';
+                    console.log(JSON.stringify(datosRespuesta)[11])
+                    if (JSON.stringify(datosRespuesta)[11] == 1) {
+                        window.location.href = 'listar';
+                    } 
+                    
                 }))
         }
     }
