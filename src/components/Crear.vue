@@ -23,17 +23,17 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="telefono" class="form-label">Telefono:</label>
+                      <label for="Telefono" class="form-label">Telefono:</label>
                       <input type="text"
-                        class="form-control" required name="telefono" v-model="cliente.apellido" id="telefono" aria-describedby="helpId" placeholder="Telefono">
-                      <small id="helpId" class="form-text text-muted">Escribe el telefono</small>
+                        class="form-control" required name="Telefono" v-model="cliente.telefono" id="Telefono" aria-describedby="helpId" placeholder="Telefono">
+                      <small id="helpId" class="form-text text-muted">Escribe el Telefono</small>
                     </div>
 
                     <div class="mb-3">
-                      <label for="localidad" class="form-label">Localidad:</label>
+                      <label for="Localidad" class="form-label">Localidad:</label>
                       <input type="text"
-                        class="form-control" required name="localidad" v-model="cliente.apellido" id="localidad" aria-describedby="helpId" placeholder="Localidad">
-                      <small id="helpId" class="form-text text-muted">Escribe el localidad</small>
+                        class="form-control" required name="Localidad" v-model="cliente.localidad" id="Localidad" aria-describedby="helpId" placeholder="Localidad">
+                      <small id="helpId" class="form-text text-muted">Escribe el codgio Localidad</small>
                     </div>
 
                     <div class="mb-3">
