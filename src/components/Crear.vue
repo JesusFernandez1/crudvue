@@ -91,14 +91,11 @@ export default {
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta => {
-                    console.log(JSON.stringify(datosRespuesta)[11])
-                    if (JSON.stringify(datosRespuesta)[11] == 1) {
-                        window.location.href = 'login';
-                    } 
-                    
-                }))
+                if (JSON.stringify(datosRespuesta)[11] == 1) {
+                    window.location.href = 'login';
+                }  
+            }))
         }
-    }
-    
+    } 
 }
 </script>
