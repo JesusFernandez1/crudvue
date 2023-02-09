@@ -24,7 +24,7 @@
 
                     <div class="mb-3">
                       <label for="Telefono" class="form-label">Telefono:</label>
-                      <input type="text"
+                      <input type="number"
                         class="form-control" required name="Telefono" v-model="cliente.telefono" id="Telefono" aria-describedby="helpId" placeholder="Telefono">
                       <small id="helpId" class="form-text text-muted">Escribe el Telefono</small>
                     </div>
