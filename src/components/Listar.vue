@@ -30,12 +30,10 @@
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
 
-                                    <button type="button" v-on:click="verPolizas(cliente.idcliente)"
-                                        class="btn btn-info">Ver Polizas</button>
+                                   <!--<router-link :to="{name:'polizas',params:{id:cliente.idcliente}}"  class="btn btn-info">Ver polizas</router-link>--> 
 
-                                    <button type="button" v-on:click="modificarCliente(cliente.idcliente)"
-                                        class="btn btn-warning">Modificar</button>
-                                   
+                                    <router-link :to="{name:'modificar',params:{id:cliente.idcliente}}"  class="btn btn-warning">Modificar</router-link>
+                                        
                                     <button type="button" v-on:click="borrarCliente(cliente.idcliente)"
                                         class="btn btn-danger">Borrar</button>
                                 </div>
@@ -76,9 +74,6 @@ export default {
                 })
                 .catch(console.log)
         },
-        modificarCliente() {
-            window.location.href = 'modificar'
-        },
         borrarCliente(id) {
             fetch('http://localhost/user/?borrar=' + id)
                 .then(respuesta => respuesta.json())
@@ -90,9 +85,6 @@ export default {
 
                 })
                 .catch(console.log)
-        },
-        verPolizas() {
-            window.location.href = 'polizas'
         }
     }
 }

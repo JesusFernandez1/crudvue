@@ -27,7 +27,7 @@ const routes = [
     component: Listar
   },
   {
-    path: '/modificar',
+    path: '/modificar/:id',
     name: 'modificar',
     component: Modificar
   },
