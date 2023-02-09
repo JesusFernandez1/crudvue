@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Login from '../components/Login.vue'
 import Crear from '../components/Crear.vue'
 import Listar from '../components/Listar.vue'
+import Modificar from '../components/Modificar.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/listar',
     name: 'listar',
     component: Listar
+  },
+  {
+    path: '/modificar',
+    name: 'modificar',
+    component: Modificar
   },
   {
     path: '/about',
