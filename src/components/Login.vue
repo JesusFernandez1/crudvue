@@ -22,6 +22,7 @@
                                                 class="form-control form-control-lg" name="pass" />
                                             <label class="form-label" for="typePasswordX">Password</label>
                                         </div>
+                                        <p id="errorLog" style="color: red;" hidden>Correo y/o contraseña erroneos</p>
                                         <p class="small mb-5 pb-lg-2">
                                             <a class="text-white-50" href="#!">Forgot password?</a>
                                         </p>
