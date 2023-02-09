@@ -2,41 +2,36 @@
     <div>
         <div class="card">
             <div class="card-header">
-                Clientes
+                Polizas
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Telefono</th>
-                            <th>Localidad</th>
-                            <th>Codigo postal</th>
-                            <th>Tipo</th>
+                            <th>Importe</th>
+                            <th>Fecha de creacion</th>
+                            <th>Estado</th>
+                            <th>Observaciones</th>
+                            <th>ID del cliente</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="cliente in clientes" :key="cliente.idcliente">
-                            <td>{{ cliente.idcliente }}</td>
-                            <td>{{ cliente.nombre }}</td>
-                            <td>{{ cliente.apellido }}</td>
-                            <td>{{ cliente.telefono }}</td>
-                            <td>{{ cliente.localidad }}</td>
-                            <td>{{ cliente.codigo_postal }}</td>
-                            <td>{{ cliente.tipo }}</td>
+                        <tr v-for="poliza in polizas" :key="poliza.idpoliza">
+                            <td>{{ poliza.idpoliza }}</td>
+                            <td>{{ poliza.importe }}</td>
+                            <td>{{ poliza.fecha }}</td>
+                            <td>{{ poliza.estado }}</td>
+                            <td>{{ poliza.obeservaciones }}</td>
+                            <td>{{ poliza.cliente_idcliente }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
 
-                                    <button type="button" v-on:click="verPolizas(cliente.idcliente)"
-                                        class="btn btn-info">Ver Polizas</button>
-
-                                    <button type="button" v-on:click="modificarCliente(cliente.idcliente)"
-                                        class="btn btn-warning">Modificar</button>
+                                    <button type="button" v-on:click="modificarPoliza(poliza.idpoliza)"
+                                        class="btn btn-info">Modificar</button>
                                    
-                                    <button type="button" v-on:click="borrarCliente(cliente.idcliente)"
+                                    <button type="button" v-on:click="borrarPoliza(poliza.idpoliza)"
                                         class="btn btn-danger">Borrar</button>
                                 </div>
                             </td>
@@ -54,32 +49,29 @@ export default {
     data() {
 
         return {
-            clientes: []
+            polizas: []
         }
     },
     created: function () {
-        this.consultarCliente();
+        this.consultarpoliza();
     },
     methods: {
-        consultarCliente() {
+        consultarpoliza() {
             fetch('http://localhost/user/')
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
 
                     console.log(datosRespuesta)
-                    this.clientes = []
+                    this.polizas = []
                     if (typeof datosRespuesta[0].success === 'undefined') {
 
-                        this.clientes = datosRespuesta;
+                        this.polizas = datosRespuesta;
                     }
                 })
                 .catch(console.log)
         },
-        modificarCliente() {
-            window.location.href = 'modificar'
-        },
-        borrarCliente(id) {
+        borrarPoliza(id) {
             fetch('http://localhost/user/?borrar=' + id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
@@ -91,8 +83,8 @@ export default {
                 })
                 .catch(console.log)
         },
-        verPolizas() {
-            window.location.href = 'polizas'
+        verPolizas(id) {
+
         }
     }
 }
