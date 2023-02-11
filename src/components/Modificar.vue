@@ -109,9 +109,9 @@ export default {
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta=>{
-
-                console.log(datosRespuesta);
-                window.location.href='listar';
+              if (JSON.stringify(datosRespuesta) == 'true') {
+                        window.location.href = 'listar';
+                } 
             }))
         }
     }
