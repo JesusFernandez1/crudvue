@@ -32,6 +32,8 @@
 
                                    <router-link :to="{name:'polizas',params:{id:cliente.idcliente}}"  class="btn btn-info">Ver polizas</router-link>
 
+                                   <router-link :to="{name:'crearPoliza',params:{id:cliente.idcliente}}"  class="btn btn-success">Crear poliza</router-link>
+
                                     <router-link :to="{name:'modificar',params:{id:cliente.idcliente}}"  class="btn btn-warning">Modificar</router-link>
                                         
                                     <button type="button" v-on:click="borrarCliente(cliente.idcliente)"
@@ -84,6 +86,9 @@ export default {
 
                 })
                 .catch(console.log)
+        },
+        crearPoliza(){
+            window.location.href = 'crearPoliza';
         }
     }
 }

@@ -6,6 +6,7 @@ import Listar from '../components/Listar.vue'
 import Modificar from '../components/Modificar.vue'
 import Polizas from '../components/Polizas.vue'
 import ModificarPoliza from '../components/ModificarPoliza.vue'
+import CrearPoliza from '../components/CrearPoliza.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/modificarpoliza/:id',
     name: 'modificarpoliza',
     component: ModificarPoliza
+  },
+  {
+    path: '/crearPoliza/:id',
+    name: 'crearPoliza',
+    component: CrearPoliza
   },
   {
     path: '/about',
