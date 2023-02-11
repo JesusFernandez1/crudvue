@@ -24,9 +24,14 @@
 
                     <div class="mb-3">
                       <label for="estado" class="form-label">Estado:</label>
-                      <input type="text"
-                        class="form-control" required name="estado" v-model="cliente.estado" id="estado" aria-describedby="helpId" placeholder="Estado">
-                      <small id="helpId" class="form-text text-muted">Escribe el estado</small>
+                      <select  v-model="cliente.estado" required name="estado" id="estado" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Elija un estado</option>
+                        <option value="Cobrada">Cobrada</option>
+                        <option value="A cuenta">A cuenta</option>
+                        <option value="Liquidada">Liquidada</option>
+                        <option value="Anulada">Anulada</option>
+                        <option value="Pre-Anulada">Pre-Anulada</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
