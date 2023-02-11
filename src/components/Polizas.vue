@@ -23,13 +23,12 @@
                             <td>{{ poliza.importe }}</td>
                             <td>{{ poliza.fecha }}</td>
                             <td>{{ poliza.estado }}</td>
-                            <td>{{ poliza.obeservaciones }}</td>
+                            <td>{{ poliza.observaciones }}</td>
                             <td>{{ poliza.cliente_idcliente }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
 
-                                    <button type="button" v-on:click="modificarPoliza(poliza.idpoliza)"
-                                        class="btn btn-info">Modificar</button>
+                                    <router-link :to="{name:'modificarpoliza',params:{id:poliza.idpoliza}}"  class="btn btn-warning">Modificar</router-link>
                                    
                                     <button type="button" v-on:click="borrarPoliza(poliza.idpoliza)"
                                         class="btn btn-danger">Borrar</button>
@@ -53,14 +52,13 @@ export default {
         }
     },
     created: function () {
-        this.consultarpoliza();
+        this.consultarPoliza();
     },
     methods: {
-        consultarpoliza() {
-            fetch('http://localhost/user/')
+        consultarPoliza() {
+            fetch('http://localhost/poliza/?consultar=' + this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
-
 
                     console.log(datosRespuesta)
                     this.polizas = []
@@ -72,7 +70,7 @@ export default {
                 .catch(console.log)
         },
         borrarPoliza(id) {
-            fetch('http://localhost/user/?borrar=' + id)
+            fetch('http://localhost/poliza/?borrar=' + id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -83,9 +81,6 @@ export default {
                 })
                 .catch(console.log)
         },
-        verPolizas(id) {
-
-        }
     }
 }
 </script>

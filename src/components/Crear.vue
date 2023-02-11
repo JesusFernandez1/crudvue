@@ -89,7 +89,7 @@ export default {
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta => {
-                if (JSON.stringify(datosRespuesta)[11] == 1) {
+                if (JSON.stringify(datosRespuesta) == 'true') {
                     window.location.href = 'login';
                 }  
             }))

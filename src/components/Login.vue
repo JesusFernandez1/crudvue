@@ -21,7 +21,7 @@
                                                 class="form-control form-control-lg" name="pass" />
                                             <label class="form-label" for="typePasswordX">Password</label>
                                         </div>
-                                        <p id="errorLog" style="color: red;" hidden>Correo y/o contraseña erroneos</p>
+                                        <span id="errorLog" style="color: red;" hidden>Correo y/o contraseña erroneos</span>
                                         <p class="small mb-5 pb-lg-2">
                                             <a class="text-white-50" href="#!">Forgot password?</a>
                                         </p>
@@ -62,7 +62,7 @@ export default {
             })
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta => {
-                    if (JSON.stringify(datosRespuesta)[11] == 1) {
+                    if (JSON.stringify(datosRespuesta) == 'true') {
                         window.location.href = 'listar';
                     } 
                     

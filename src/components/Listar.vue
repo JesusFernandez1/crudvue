@@ -30,7 +30,7 @@
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
 
-                                   <!--<router-link :to="{name:'polizas',params:{id:cliente.idcliente}}"  class="btn btn-info">Ver polizas</router-link>--> 
+                                   <router-link :to="{name:'polizas',params:{id:cliente.idcliente}}"  class="btn btn-info">Ver polizas</router-link>
 
                                     <router-link :to="{name:'modificar',params:{id:cliente.idcliente}}"  class="btn btn-warning">Modificar</router-link>
                                         
