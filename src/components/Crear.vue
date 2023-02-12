@@ -31,9 +31,10 @@
 
                     <div class="mb-3">
                       <label for="Localidad" class="form-label">Localidad:</label>
-                      <input type="text"
-                        class="form-control" required name="Localidad" v-model="cliente.localidad" id="Localidad" aria-describedby="helpId" placeholder="Localidad">
-                      <small id="helpId" class="form-text text-muted">Escribe el codgio Localidad</small>
+                      <select v-model="cliente.localidad" required name="localidad" id="localidad" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Elija una localidad</option>
+                        <option v-for="Localidad in Localidades" :key="Localidad.id">{{Localidad.nombre}}</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -73,12 +74,30 @@
 export default {
     data(){
         return {
+            Localidades: [],
             cliente:{
 
             }
         }
     },
+    created: function () {
+        this.consultarLocalidad();
+    },
     methods:{
+      consultarLocalidad() {
+            fetch('http://localhost/comunidades/')
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+
+                    console.log(datosRespuesta)
+                    this.Localidades = []
+                    if (typeof datosRespuesta[0].success === 'undefined') {
+
+                        this.Localidades = datosRespuesta;
+                    }
+                })
+                .catch(console.log)
+        },
         agregarRegistro(){
             var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, localidad: this.cliente.localidad, 
                 codigo_postal: this.cliente.codigo_postal, provincia: this.cliente.provincia, tipo: this.cliente.tipo}
