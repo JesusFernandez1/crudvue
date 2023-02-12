@@ -33,7 +33,7 @@
                       <label for="Localidad" class="form-label">Localidad:</label>
                       <select v-model="cliente.localidad" required name="localidad" id="localidad" class="form-select" aria-label="Default select example">
                         <option disabled selected>Elija una localidad</option>
-                        <option v-on:click="jugar" v-for="Localidad in Localidades" :key="Localidad.id">{{Localidad.nombre}}</option>
+                        <option v-on:click="consultar" v-for="Localidad in Localidades" :key="Localidad.id">{{Localidad.nombre}}</option>
                         </select>
                     </div>
 
@@ -115,7 +115,7 @@ export default {
                 }  
             }))
         },
-        jugar:function(){
+        consultar:function(){
 
           fetch('http://localhost/provincias/?consultarProvincia=' + this.cliente.localidad)
                 .then(respuesta => respuesta.json())
