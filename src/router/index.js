@@ -7,6 +7,7 @@ import Modificar from '../components/Modificar.vue'
 import Polizas from '../components/Polizas.vue'
 import ModificarPoliza from '../components/ModificarPoliza.vue'
 import CrearPoliza from '../components/CrearPoliza.vue'
+import VerPolizas from '../components/VerPolizas.vue'
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     path: '/modificar/:id',
     name: 'modificar',
     component: Modificar
+  },
+  {
+    path: '/VerPolizas',
+    name: 'VerPolizas',
+    component: VerPolizas
   },
   {
     path: '/polizas/:id',
