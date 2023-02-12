@@ -33,7 +33,7 @@
                       <label for="Localidad" class="form-label">Localidad:</label>
                       <select v-model="cliente.localidad" required name="localidad" id="localidad" class="form-select" aria-label="Default select example">
                         <option disabled selected>Elija una localidad</option>
-                        <option v-for="Localidad in Localidades" :key="Localidad.id">{{Localidad.nombre}}</option>
+                        <option v-on:click="jugar" v-for="Localidad in Localidades" :key="Localidad.id">{{Localidad.nombre}}</option>
                         </select>
                     </div>
 
@@ -46,9 +46,10 @@
 
                     <div class="mb-3">
                       <label for="provincia" class="form-label">Provincia:</label>
-                      <input type="text"
-                        class="form-control" required name="provincia" v-model="cliente.provincia" id="provincia" aria-describedby="helpId" placeholder="Provincia">
-                      <small id="helpId" class="form-text text-muted">Escribe el provincia</small>
+                      <select v-model="cliente.provincia" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Elija una provincia</option>
+                        <option v-for="provincia in provincias" :key="provincia.id">{{provincia.nombre}}</option>
+                      </select>
                     </div>
                     
                     <div class="mb-3">
@@ -75,6 +76,7 @@ export default {
     data(){
         return {
             Localidades: [],
+            provincias: [],
             cliente:{
 
             }
@@ -112,6 +114,21 @@ export default {
                     window.location.href = 'login';
                 }  
             }))
+        },
+        jugar:function(){
+
+          fetch('http://localhost/provincias/?consultarProvincia=' + this.cliente.localidad)
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+
+                    console.log(datosRespuesta)
+                    this.provincias = []
+                    if (typeof datosRespuesta[0].success === 'undefined') {
+
+                        this.provincias = datosRespuesta;
+                    }
+                })
+                .catch(console.log)
         }
     } 
 }
