@@ -31,8 +31,8 @@
                                 <form v-on:submit.prevent="registerUsuario()">
                                 <div>
                                     <p class="mb-0">
-                                        Don't have an account?
-                                        <input type="submit" name="register" id="register" value="Sing Up">
+                                        Quieres agregar a un nuevo cliente?
+                                        <input type="submit" name="register" id="register" value="Crear nuevo cliente">
                                     </p>
                                 </div>
                             </form>
