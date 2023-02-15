@@ -5,7 +5,7 @@
                 Clientes
             </div>
             <div class="card-body">
-                <table class="table">
+                <table id="listado" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -24,7 +24,7 @@
                             <td>{{ cliente.nombre }}</td>
                             <td>{{ cliente.apellido }}</td>
                             <td>{{ cliente.telefono }}</td>
-                            <td>{{ cliente.localidad }}</td>
+                            <td>{{ cliente.provincia }}</td>
                             <td>{{ cliente.codigo_postal }}</td>
                             <td>{{ cliente.tipo }}</td>
                             <td>
@@ -49,6 +49,11 @@
 </template>
 
 <script>
+import 'jquery/dist/jquery.min.js';
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery'; 
+
 export default {
     data() {
 
@@ -72,6 +77,9 @@ export default {
 
                         this.clientes = datosRespuesta;
                     }
+                    this.$nextTick(function () {
+                        $("#listado").DataTable()
+                    });
                 })
                 .catch(console.log)
         },
@@ -93,3 +101,10 @@ export default {
     }
 }
 </script>
+<style>
+
+#listado th {
+    text-align: center;
+}
+
+</style>

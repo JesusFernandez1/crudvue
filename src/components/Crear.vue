@@ -30,10 +30,10 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="Localidad" class="form-label">Localidad:</label>
-                      <select v-model="cliente.localidad" required name="localidad" id="localidad" class="form-select" aria-label="Default select example">
-                        <option disabled selected>Elija una localidad</option>
-                        <option v-on:click="consultar" v-for="Localidad in Localidades" :key="Localidad.id">{{Localidad.nombre}}</option>
+                      <label for="provincia" class="form-label">Provincia:</label>
+                      <select v-model="provinciaTarget" v-on:change="consultarMunicipios(provinciaTarget)" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Elija una provincia</option>
+                        <option v-for="provincia in provincias" :key="provincia.id" v-bind:value="provincia.id">{{provincia.nombre}}</option>
                         </select>
                     </div>
 
@@ -44,11 +44,11 @@
                       <small id="helpId" class="form-text text-muted">Escribe el codgio Postal</small>
                     </div>
 
-                    <div class="mb-3">
-                      <label for="provincia" class="form-label">Provincia:</label>
-                      <select v-model="cliente.provincia" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
-                        <option disabled selected>Elija una provincia</option>
-                        <option v-for="provincia in provincias" :key="provincia.id">{{provincia.nombre}}</option>
+                    <div class="mb-3" v-if="provinciaTarget">
+                      <label for="municipio" class="form-label">Municipio:</label>
+                      <select v-model="cliente.municipio" required name="municipio" id="municipio" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Elija un municipio</option>
+                        <option v-for="municipio in municipios" :key="municipio.id">{{municipio.municipio}}</option>
                       </select>
                     </div>
                     
@@ -75,49 +75,20 @@
 export default {
     data(){
         return {
-            Localidades: [],
+            municipios: [],
             provincias: [],
+            provinciaTarget: false,
             cliente:{
 
             }
         }
     },
     created: function () {
-        this.consultarLocalidad();
+        this.consultarProvincia();
     },
     methods:{
-      consultarLocalidad() {
-            fetch('http://localhost/comunidades/')
-                .then(respuesta => respuesta.json())
-                .then((datosRespuesta) => {
-
-                    console.log(datosRespuesta)
-                    this.Localidades = []
-                    if (typeof datosRespuesta[0].success === 'undefined') {
-
-                        this.Localidades = datosRespuesta;
-                    }
-                })
-                .catch(console.log)
-        },
-        agregarRegistro(){
-            var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, localidad: this.cliente.localidad, 
-                codigo_postal: this.cliente.codigo_postal, provincia: this.cliente.provincia, tipo: this.cliente.tipo}
-
-            fetch('http://localhost/user/?insertar=1', {
-                method:"POST",
-                body:JSON.stringify(datosEnviar)
-            })
-            .then(respuesta => respuesta.json())
-            .then((datosRespuesta => {
-                if (JSON.stringify(datosRespuesta) == 'true') {
-                    window.location.href = 'login';
-                }  
-            }))
-        },
-        consultar:function(){
-
-          fetch('http://localhost/provincias/?consultarProvincia=' + this.cliente.localidad)
+      consultarProvincia() {
+            fetch('http://localhost/provincias/')
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -129,6 +100,35 @@ export default {
                     }
                 })
                 .catch(console.log)
+        },
+        consultarMunicipios(id) {
+          console.log(id)
+            fetch('http://localhost/municipios/?consultarMunicipio=' + id)
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+
+                    this.municipios = []
+                    if (typeof datosRespuesta[0].success === 'undefined') {
+
+                        this.municipios = datosRespuesta;
+                    }
+                })
+                .catch(console.log)
+        },
+        agregarRegistro(){
+            var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, provincia: this.cliente.provincia,
+                codigo_postal: this.cliente.codigo_postal, municipio: this.cliente.municipio,  tipo: this.cliente.tipo}
+
+            fetch('http://localhost/user/?insertar=1', {
+                method:"POST",
+                body:JSON.stringify(datosEnviar)
+            })
+            .then(respuesta => respuesta.json())
+            .then((datosRespuesta => {
+                if (JSON.stringify(datosRespuesta) == 'true') {
+                    window.location.href = 'login';
+                }  
+            }))
         }
     } 
 }
