@@ -64,8 +64,6 @@ export default {
     methods:{
 
         obtenerInformacionID(){
-
-           
             fetch('http://localhost/poliza/?consultarModificar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {

@@ -42,7 +42,7 @@ const routes = [
     component: VerPolizas
   },
   {
-    path: '/MostrarCliente',
+    path: '/MostrarCliente/:id',
     name: 'MostrarCliente',
     component: MostrarCliente
   },

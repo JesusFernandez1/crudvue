@@ -68,14 +68,13 @@ export default {
     },
     methods: {
         consultarCliente() {
-            fetch('http://localhost/user/?consultar=' + this.$route.params.id)
+            fetch('http://localhost/user/?consultar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
-                    if (typeof datosRespuesta[0].success === 'undefined') {
+                    console.log(datosRespuesta)
+                    this.cliente = datosRespuesta[0];
 
-                        this.cliente = datosRespuesta[0];
-                    }
                     this.$nextTick(function () {
                         $("#listado").DataTable()
                     });
