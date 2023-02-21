@@ -44,7 +44,6 @@
                     <div class="mb-3">
                       <label for="cliente_idcliente" class="form-label">Cliente:</label>
                       <select v-model="cliente.cliente_idcliente" required name="cliente_idcliente" id="cliente_idcliente" class="form-select" aria-label="Default select example">
-                        <option disabled selected>Elija un cliente</option>
                         <option v-for="cliente in clientes" :key="cliente.idcliente">{{cliente.nombre}}</option>
                         </select>
                     </div>
