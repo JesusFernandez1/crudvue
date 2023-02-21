@@ -30,11 +30,14 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="Localidad" class="form-label">Localidad:</label>
-                      <input type="text"
-                        class="form-control" required name="Localidad" v-model="cliente.localidad" id="Localidad" aria-describedby="helpId" placeholder="Localidad">
-                      <small id="helpId" class="form-text text-muted">Escribe el codgio Localidad</small>
-                    </div>
+                    <label for="provincia">Provincia:</label>
+                    <select v-model="provinciaSeleccionada" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
+                      <option value="">Selecciona una provincia</option>
+                      <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id">
+                        {{ provincia.provincia }}
+                      </option>
+                    </select>
+                  </div>
 
                     <div class="mb-3">
                       <label for="codigo_postal" class="form-label">Codigo Postal:</label>
@@ -44,11 +47,14 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="provincia" class="form-label">Provincia:</label>
-                      <input type="text"
-                        class="form-control" required name="provincia" v-model="cliente.provincia" id="provincia" aria-describedby="helpId" placeholder="Provincia">
-                      <small id="helpId" class="form-text text-muted">Escribe el provincia</small>
-                    </div>
+                    <label for="municipio" class="form-label">Municipio:</label>
+                    <select v-model="municipioSeleccionado" required name="municipio" id="municipio" class="form-select" aria-label="Default select example">
+                      <option value="">Selecciona un municipio</option>
+                      <option v-for="municipio in municipios" :key="municipio.id" :value="municipio.id">
+                        {{ municipio.municipio }}
+                      </option>
+                    </select>
+                  </div>
                     
                     <div class="mb-3">
                       <label for="tipo" class="form-label">Tipo de cliente:</label>
