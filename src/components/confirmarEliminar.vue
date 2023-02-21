@@ -5,26 +5,28 @@
                 <h3>Estas seguro de eliminar la cliente?</h3>
             </div>
             <div class="card-body">
-                <table id="listaclientes" class="table">
+                <table id="listado" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Importe</th>
-                            <th>Fecha de creacion</th>
-                            <th>Estado</th>
-                            <th>Observaciones</th>
-                            <th>ID del cliente</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
+                            <th>Localidad</th>
+                            <th>Codigo postal</th>
+                            <th>Tipo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{ cliente.idcliente }}</td>
-                            <td>{{ cliente.importe }}</td>
-                            <td>{{ cliente.fecha }}</td>
-                            <td>{{ cliente.estado }}</td>
-                            <td>{{ cliente.observaciones }}</td>
-                            <td>{{ cliente.cliente_idcliente }}</td>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.apellido }}</td>
+                            <td>{{ cliente.telefono }}</td>
+                            <td>{{ cliente.provincia }}</td>
+                            <td>{{ cliente.codigo_postal }}</td>
+                            <td>{{ cliente.tipo }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
 
