@@ -77,13 +77,13 @@ export default {
                 .then((datosRespuesta) => {
 
                     console.log(datosRespuesta)
-                    window.location.href = "listar"
+                    window.location.href = "/listar"
 
                 })
                 .catch(console.log)
         },
         noBorrarCliente() {
-            window.location.href = 'listar';
+            window.location.href = '/listar';
         }
     }
 }

@@ -61,13 +61,12 @@ export default {
     methods: {
         consultarPoliza() {
             fetch('http://localhost/poliza/?consultarBorrar=' + this.$route.params.id)
-                .then(respuesta => respuesta.json())
+            .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
-                    if (typeof datosRespuesta[0].success === 'undefined') {
+                    console.log(datosRespuesta)
+                    this.poliza = datosRespuesta[0];
 
-                        this.polizas = datosRespuesta;
-                    }
                 })
                 .catch(console.log)
         },
@@ -76,12 +75,13 @@ export default {
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
-                    window.location.href = "VerPolizas"
+                    console.log(datosRespuesta)
+                    window.location.href = "/VerPolizas"
                 })
                 .catch(console.log)
         },
         noBorrarPoliza() {
-            window.location.href = 'VerPolizas';
+            window.location.href = '/VerPolizas';
         }
     }
 }
