@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         consultarPoliza() {
-            fetch('http://localhost/poliza/?consultar=' + this.$route.params.id)
+            fetch('http://localhost/poliza/?consultarBorrar=' + this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
