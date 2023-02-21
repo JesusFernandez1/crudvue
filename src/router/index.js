@@ -8,6 +8,7 @@ import Polizas from '../components/Polizas.vue'
 import ModificarPoliza from '../components/ModificarPoliza.vue'
 import CrearPoliza from '../components/CrearPoliza.vue'
 import VerPolizas from '../components/VerPolizas.vue'
+import MostrarCliente from '../components/MostrarCliente.vue'
 
 const routes = [
   {
@@ -39,6 +40,11 @@ const routes = [
     path: '/VerPolizas',
     name: 'VerPolizas',
     component: VerPolizas
+  },
+  {
+    path: '/MostrarCliente',
+    name: 'MostrarCliente',
+    component: MostrarCliente
   },
   {
     path: '/polizas/:id',

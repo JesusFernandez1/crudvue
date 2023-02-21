@@ -22,11 +22,13 @@
                             <td>{{ poliza.idpoliza }}</td>
                             <td>{{ poliza.importe }}</td>
                             <td>{{ poliza.fecha }}</td>
-                            <td>{{ poliza.estado }}</td>
+                            <td v-bind:class="{ 'text-success': poliza.estado === 'Cobrada', 'text-danger': poliza.estado === 'A cuenta', 'text-info': poliza.estado === 'Liquidada', 'text-secundary': poliza.estado === 'Anulada', 'text-secundary': poliza.estado === 'Pre-Anulada' }">{{ poliza.estado }}</td>
                             <td>{{ poliza.observaciones }}</td>
                             <td>{{ poliza.cliente_idcliente }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
+
+                                    <router-link :to="{name:'MostrarCliente',params:{id:poliza.cliente_idcliente}}"  class="btn btn-info">Ver cliente</router-link>
 
                                     <router-link :to="{name:'modificarpoliza',params:{id:poliza.idpoliza}}"  class="btn btn-warning">Modificar</router-link>
                                    
