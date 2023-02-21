@@ -5,6 +5,44 @@
                 Polizas
             </div>
             <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
+                            <th>Localidad</th>
+                            <th>Codigo postal</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="cliente in clientes" :key="cliente.idcliente">
+                            <td>{{ cliente.idcliente }}</td>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.apellido }}</td>
+                            <td>{{ cliente.telefono }}</td>
+                            <td>{{ cliente.provincia }}</td>
+                            <td>{{ cliente.codigo_postal }}</td>
+                            <td>{{ cliente.tipo }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="">
+
+                                    <router-link :to="{ name: 'crearPoliza', params: { id: cliente.idcliente } }"
+                                        class="btn btn-success">Crear poliza</router-link>
+
+                                    <router-link :to="{ name: 'modificar', params: { id: cliente.idcliente } }"
+                                        class="btn btn-warning">Modificar</router-link>
+
+                                    <button type="button" v-on:click="borrarCliente(cliente.idcliente)"
+                                        class="btn btn-danger">Borrar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <table id="listaPolizas" class="table">
                     <thead>
                         <tr>
@@ -22,15 +60,16 @@
                             <td>{{ poliza.idpoliza }}</td>
                             <td>{{ poliza.importe }}</td>
                             <td>{{ poliza.fecha }}</td>
-                            <td>{{ poliza.estado }}</td>
+                            <td v-bind:class="{ 'text-success': poliza.estado === 'Cobrada', 'text-danger': poliza.estado === 'A cuenta', 'text-info': poliza.estado === 'Liquidada', 'text-secundary': poliza.estado === 'Anulada', 'text-secundary': poliza.estado === 'Pre-Anulada' }">{{ poliza.estado }}</td>
                             <td>{{ poliza.observaciones }}</td>
                             <td>{{ poliza.cliente_idcliente }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
 
-                                    <router-link :to="{ name: 'modificarpoliza', params: { id: poliza.idpoliza } }"
-                                        class="btn btn-warning">Modificar</router-link>
+                                    <router-link :to="{name:'MostrarCliente',params:{id:poliza.cliente_idcliente}}"  class="btn btn-info">Ver cliente</router-link>
 
+                                    <router-link :to="{name:'modificarpoliza',params:{id:poliza.idpoliza}}"  class="btn btn-warning">Modificar</router-link>
+                                   
                                     <button type="button" v-on:click="borrarPoliza(poliza.idpoliza)"
                                         class="btn btn-danger">Borrar</button>
                                 </div>
@@ -53,11 +92,13 @@ export default {
     data() {
 
         return {
-            polizas: []
+            polizas: [],
+            clientes: []
         }
     },
     created: function () {
         this.consultarPoliza();
+        this.consultarCliente();
     },
     methods: {
         consultarPoliza() {
@@ -91,6 +132,36 @@ export default {
                 })
                 .catch(console.log)
         },
+        consultarCliente() {
+            fetch('http://localhost/user/?consultar=' + this.$route.params.id)
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+
+
+                    console.log(datosRespuesta)
+                    this.clientes = []
+                    if (typeof datosRespuesta[0].success === 'undefined') {
+
+                        this.clientes = datosRespuesta;
+                    }
+                })
+                .catch(console.log)
+        },
+        borrarCliente(id) {
+            fetch('http://localhost/user/?borrar=' + id)
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+
+                    console.log(datosRespuesta)
+                    window.location.href = "listar"
+
+
+                })
+                .catch(console.log)
+        },
+        crearPoliza() {
+            window.location.href = 'crearPoliza';
+        },
         borrarPoliza(id) {
             fetch('http://localhost/poliza/?borrar=' + id)
                 .then(respuesta => respuesta.json())
@@ -107,9 +178,7 @@ export default {
 }
 </script>
 <style>
-
 #listaPolizas th {
     text-align: center;
 }
-
 </style>

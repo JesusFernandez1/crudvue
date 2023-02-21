@@ -24,7 +24,7 @@
 
                     <div class="mb-3">
                       <label for="Telefono" class="form-label">Telefono:</label>
-                      <input type="number"
+                      <input type="text"
                         class="form-control" required name="Telefono" v-model="cliente.telefono" id="Telefono" aria-describedby="helpId" placeholder="Telefono">
                       <small id="helpId" class="form-text text-muted">Escribe el Telefono</small>
                     </div>
@@ -33,7 +33,7 @@
                       <label for="provincia" class="form-label">Provincia:</label>
                       <select v-model="provinciaTarget" v-on:change="consultarMunicipios(provinciaTarget)" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
                         <option disabled selected>Elija una provincia</option>
-                        <option v-for="provincia in provincias" :key="provincia.id" v-bind:value="provincia.id">{{provincia.nombre}}</option>
+                        <option v-for="provincia in provincias" :key="provincia.id" v-bind:value="provincia.id">{{provincia.provincia}}</option>
                         </select>
                     </div>
 
@@ -102,7 +102,6 @@ export default {
                 .catch(console.log)
         },
         consultarMunicipios(id) {
-          console.log(id)
             fetch('http://localhost/municipios/?consultarMunicipio=' + id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
