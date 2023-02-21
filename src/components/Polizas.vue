@@ -56,11 +56,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="poliza in polizas" :key="poliza.idpoliza">
+                        <tr v-for="poliza in polizas" :key="poliza.idpoliza" v-bind:class="{ 'bg-success': poliza.estado == 'Cobrada', 'bg-danger': poliza.estado == 'Anulada', 'bg-warning': poliza.estado == 'A cuenta', 'bg-info': poliza.estado == 'Liquidada', 'bg-secondary': poliza.estado == 'Pre-Anulada' }">
                             <td>{{ poliza.idpoliza }}</td>
                             <td>{{ poliza.importe }}</td>
                             <td>{{ poliza.fecha }}</td>
-                            <td v-bind:class="{ 'text-success': poliza.estado === 'Cobrada', 'text-danger': poliza.estado === 'A cuenta', 'text-info': poliza.estado === 'Liquidada', 'text-secundary': poliza.estado === 'Anulada', 'text-secundary': poliza.estado === 'Pre-Anulada' }">{{ poliza.estado }}</td>
+                            <td>{{ poliza.estado }}</td>
                             <td>{{ poliza.observaciones }}</td>
                             <td>{{ poliza.cliente_idcliente }}</td>
                             <td>
