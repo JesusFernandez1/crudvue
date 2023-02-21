@@ -36,8 +36,7 @@
                                     <router-link :to="{ name: 'modificar', params: { id: cliente.idcliente } }"
                                         class="btn btn-warning">Modificar</router-link>
 
-                                    <button type="button" v-on:click="borrarCliente(cliente.idcliente)"
-                                        class="btn btn-danger">Borrar</button>
+                                        <router-link :to="{name:'confirmarEliminar',params:{id:cliente.idcliente}}"  class="btn btn-danger">Borrar</router-link>
                                 </div>
                             </td>
                         </tr>
@@ -70,8 +69,7 @@
 
                                     <router-link :to="{name:'modificarpoliza',params:{id:poliza.idpoliza}}"  class="btn btn-warning">Modificar</router-link>
                                    
-                                    <button type="button" v-on:click="borrarPoliza(poliza.idpoliza)"
-                                        class="btn btn-danger">Borrar</button>
+                                    <router-link :to="{name:'confirmarEliminarPoliza',params:{id:poliza.idpoliza}}"  class="btn btn-danger">Borrar</router-link>
                                 </div>
                             </td>
                         </tr>
@@ -147,32 +145,8 @@ export default {
                 })
                 .catch(console.log)
         },
-        borrarCliente(id) {
-            fetch('http://localhost/user/?borrar=' + id)
-                .then(respuesta => respuesta.json())
-                .then((datosRespuesta) => {
-
-                    console.log(datosRespuesta)
-                    window.location.href = "listar"
-
-
-                })
-                .catch(console.log)
-        },
         crearPoliza() {
             window.location.href = 'crearPoliza';
-        },
-        borrarPoliza(id) {
-            fetch('http://localhost/poliza/?borrar=' + id)
-                .then(respuesta => respuesta.json())
-                .then((datosRespuesta) => {
-
-                    console.log(datosRespuesta)
-                    window.location.href = "listar"
-
-
-                })
-                .catch(console.log)
         }
     }
 }

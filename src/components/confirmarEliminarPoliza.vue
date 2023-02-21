@@ -31,7 +31,7 @@
                                     <button type="button" v-on:click="borrarPoliza(poliza.idpoliza)"
                                         class="btn btn-danger">Si</button>
                                    
-                                    <button type="button" v-on:click="borrarPoliza(poliza.idpoliza)"
+                                    <button type="button" v-on:click="noBorrarPoliza()"
                                         class="btn btn-success">No</button>
                                     
                                 </div>
@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         consultarPoliza() {
-            fetch('http://localhost/poliza/')
+            fetch('http://localhost/poliza/?consultar=' + this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -80,12 +80,12 @@ export default {
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
-                    console.log(datosRespuesta)
-                    window.location.href = "listar"
-
-
+                    window.location.href = "VerPolizas"
                 })
                 .catch(console.log)
+        },
+        noBorrarPoliza() {
+            window.location.href = 'VerPolizas';
         }
     }
 }
