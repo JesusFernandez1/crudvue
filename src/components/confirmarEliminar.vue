@@ -63,14 +63,14 @@ export default {
         this.consultarcliente();
     },
     methods: {
-        consultarCliente() {
+        consultarcliente() {
             fetch('http://localhost/user/?consultar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
                     console.log(datosRespuesta)
                     this.cliente = datosRespuesta[0];
-                    
+
                 })
                 .catch(console.log)
         },
@@ -81,7 +81,6 @@ export default {
 
                     console.log(datosRespuesta)
                     window.location.href = "listar"
-
 
                 })
                 .catch(console.log)
