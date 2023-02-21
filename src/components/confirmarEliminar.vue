@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-bind:class="{ 'bg-success': cliente.estado == 'Cobrada', 'bg-danger': cliente.estado == 'Anulada', 'bg-warning': cliente.estado == 'A cuenta', 'bg-info': cliente.estado == 'Liquidada', 'bg-secondary': cliente.estado == 'Pre-Anulada' }">
+                        <tr>
                             <td>{{ cliente.idcliente }}</td>
                             <td>{{ cliente.importe }}</td>
                             <td>{{ cliente.fecha }}</td>
@@ -37,7 +37,6 @@
                                 </div>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
