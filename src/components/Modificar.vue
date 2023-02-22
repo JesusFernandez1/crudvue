@@ -37,10 +37,8 @@
                     <div class="mb-3">
                     <label for="provincia">Provincia:</label>
                     <select v-model="provinciaSeleccionada" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
-                      <option value="">Selecciona una provincia</option>
-                      <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id">
-                        {{ provincia.provincia }}
-                      </option>
+                      <option value="">{{ cliente.provincia }}</option>
+                      <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id" :selected="provincia.id === cliente.provincia">{{ provincia.provincia }}</option>
                     </select>
                   </div>
 
@@ -54,10 +52,8 @@
                     <div class="mb-3">
                     <label for="municipio" class="form-label">Municipio:</label>
                     <select v-model="municipioSeleccionado" required name="municipio" id="municipio" class="form-select" aria-label="Default select example">
-                      <option value="">Selecciona un municipio</option>
-                      <option v-for="municipio in municipios" :key="municipio.id" :value="municipio.id">
-                        {{ municipio.municipio }}
-                      </option>
+                      <option value="">{{ cliente.municipio }}</option>
+                      <option v-for="municipio in municipios" :key="municipio.id" :value="municipio.id" :selected="municipio.id === cliente.municipio">{{ municipio.municipio }}</option>
                     </select>
                   </div>
                     
@@ -87,6 +83,10 @@
 export default {
     data(){
         return{
+            provincias: [],
+            municipios: [],
+            provinciaSeleccionada: '',
+            municipioSeleccionado: '',
             cliente:{
 
             }
@@ -94,12 +94,11 @@ export default {
     },
     created:function(){
         this.obtenerInformacionID();
+        this.cargarProvincias()
     },
     methods:{
-
         obtenerInformacionID(){
-
-           
+          
             fetch('http://localhost/user/?consultar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
@@ -111,8 +110,8 @@ export default {
                 .catch(console.log)
         },
         actualizarRegistro(){
-            var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, localidad: this.cliente.localidad, 
-                codigo_postal: this.cliente.codigo_postal, provincia: this.cliente.provincia, tipo: this.cliente.tipo}
+          var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, provincia: this.provinciaSeleccionada,
+                codigo_postal: this.cliente.codigo_postal, municipio: this.municipioSeleccionado, tipo: this.cliente.tipo}
 
             fetch('http://localhost/user/?actualizar='+this.$route.params.id, {
                 method:"POST",
@@ -121,10 +120,39 @@ export default {
             .then(respuesta => respuesta.json())
             .then((datosRespuesta=>{
               if (JSON.stringify(datosRespuesta) == 'true') {
-                        window.location.href = 'listar';
+                        window.location.href = '/listar';
                 } 
             }))
-        }
+        },
+        cargarProvincias() {
+      fetch('http://localhost/provincias/')
+        .then(respuesta => respuesta.json())
+        .then(provincias => {
+          this.provincias = provincias
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        },
+      cargarMunicipios() {
+        if (this.provinciaSeleccionada) {
+           fetch(`http://localhost/municipios/?consultarMunicipio=${this.provinciaSeleccionada}`)
+            .then(respuesta => respuesta.json())
+            .then(municipios => {
+              this.municipios = municipios
+            })
+            .catch(error => {
+              console.log(error)
+            })
+          } else {
+            this.municipios = []
+          }
+        },
+    },
+  watch: {
+    provinciaSeleccionada() {
+      this.cargarMunicipios()
     }
+  }
 }
 </script>

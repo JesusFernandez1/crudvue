@@ -151,7 +151,7 @@ export default {
                 .catch(console.log)
         },
         crearPoliza() {
-            window.location.href = 'crearPoliza';
+            window.location.href = '/crearPoliza';
         }
     }
 }

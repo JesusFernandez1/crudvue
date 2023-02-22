@@ -92,13 +92,13 @@ export default {
                 .then((datosRespuesta) => {
 
                     console.log(datosRespuesta)
-                    window.location.href = "listar"
+                    window.location.href = "/listar"
 
                 })
                 .catch(console.log)
         },
         crearPoliza(){
-            window.location.href = 'crearPoliza';
+            window.location.href = '/crearPoliza';
         }
     }
 }
