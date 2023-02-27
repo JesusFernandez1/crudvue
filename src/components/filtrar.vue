@@ -1,16 +1,18 @@
 <template>
+  <nav>
+    <router-link to="/listar">Home</router-link> |
+    <router-link to="/VerPolizas">Ver cuotas</router-link>
+    </nav>
   <div>
     <form v-on:submit.prevent="buscarPolizas">
       <label for="cliente1">Cliente 1:</label>
       <select id="cliente1" v-model="cliente1">
-        <option value="codigo1">Código 1</option>
-        <option value="codigo2">Código 2</option>
+        <option v-for="cliente in clientes" :key="cliente.idcliente" :value="cliente.idcliente">{{ cliente.nombre }}</option>
       </select>
 
       <label for="cliente2">Cliente 2:</label>
       <select id="cliente2" v-model="cliente2">
-        <option value="codigo1">Código 1</option>
-        <option value="codigo2">Código 2</option>
+        <option v-for="cliente in clientes" :key="cliente.idcliente" :value="cliente.idcliente">{{ cliente.nombre }}</option>
       </select>
 
       <label for="fechaInicio">Fecha de inicio:</label>
@@ -22,7 +24,7 @@
       <button type="submit">Buscar</button>
     </form>
 
-    <table v-if="polizas.length">
+    <table v-if="polizas.length" class="table">
       <thead>
         <tr>
           <th>Cliente</th>
@@ -32,11 +34,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="poliza in polizas" :key="poliza.id" :class="{ 'rojo': !poliza.liquidada }">
-          <td>{{ poliza.cliente }}</td>
-          <td>{{ poliza.numeroPoliza }}</td>
+        <tr v-for="poliza in polizas" :key="poliza.id" v-bind:class="{ 'bg-success': poliza.estado == 'Cobrada', 'bg-danger': poliza.estado == 'Anulada', 'bg-warning': poliza.estado == 'A cuenta', 'bg-info': poliza.estado == 'Liquidada', 'bg-secondary': poliza.estado == 'Pre-Anulada' }">
+          <td>{{ poliza.cliente_idcliente }}</td>
+          <td>{{ poliza.idpoliza }}</td>
           <td>{{ poliza.fecha }}</td>
-          <td>{{ poliza.liquidada ? 'Liquidada' : 'Sin liquidar' }}</td>
+          <td>{{ poliza.estado }}</td>
         </tr>
       </tbody>
     </table>
@@ -45,35 +47,38 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
-      cliente1: 'codigo1',
-      cliente2: 'codigo2',
+      cliente1: '',
+      cliente2: '',
       fechaInicio: '',
       fechaFin: '',
       polizas: [],
-    }
+      clientes: [],
+    };
+  },
+  mounted() {
+    fetch('http://localhost/user/')
+      .then(response => response.json())
+      .then(data => {
+        this.clientes = data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   },
   methods: {
     buscarPolizas() {
-
-  fetch(`http://localhost/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}`)
-    .then(response => response.json())
-    .then(data => {
-      this.polizas = data;
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}
-  }
-}
+      fetch(`http://localhost/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}`)
+        .then(response => response.json())
+        .then(data => {
+          this.polizas = data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
-
-<style>
-.rojo {
-  color: red;
-}
-</style>
