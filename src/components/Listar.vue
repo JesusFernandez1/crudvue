@@ -2,6 +2,7 @@
     <nav>
     <router-link to="/listar">Home</router-link> |
     <router-link to="/VerPolizas">Ver cuotas</router-link> |
+    <router-link to="/filtrar">Filtrar</router-link> |
     <router-link to="/about">About</router-link>
     </nav>
     <div>

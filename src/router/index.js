@@ -10,6 +10,7 @@ import VerPolizas from '../components/VerPolizas.vue'
 import MostrarCliente from '../components/MostrarCliente.vue'
 import confirmarEliminar from '../components/confirmarEliminar.vue'
 import confirmarEliminarPoliza from '../components/confirmarEliminarPoliza.vue'
+import filtrar from '../components/filtrar.vue'
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: '/crearPoliza/:id',
     name: 'crearPoliza',
     component: CrearPoliza
+  },
+  {
+    path: '/filtrar',
+    name: 'filtrar',
+    component: filtrar
   },
   {
     path: '/about',
