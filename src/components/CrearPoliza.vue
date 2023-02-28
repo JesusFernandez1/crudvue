@@ -77,7 +77,7 @@ export default {
     },
     methods:{
         consultarCliente() {
-            fetch('http://localhost/poliza/?consultarCrear='+this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?consultarCrear='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -93,14 +93,14 @@ export default {
         agregarRegistro(){
             var datosEnviar={importe: this.cliente.importe, fecha: this.cliente.fecha, estado: this.cliente.estado, observaciones: this.cliente.observaciones, cliente_idcliente: this.cliente.cliente_idcliente}
 
-            fetch('http://localhost/poliza/?insertar=1', {
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?insertar=1', {
                 method:"POST",
                 body:JSON.stringify(datosEnviar)
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta => {
                 if (JSON.stringify(datosRespuesta) == 'true') {
-                    window.location.href = '/listar';
+                    this.$router.push({name: "listar"});
                 }  
             }))
         }

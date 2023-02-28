@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         consultarcliente() {
-            fetch('http://localhost/user/?consultar='+this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?consultar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -76,18 +76,18 @@ export default {
                 .catch(console.log)
         },
         borrarCliente(id) {
-            fetch('http://localhost/user/?borrar=' + id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?borrar=' + id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
                     console.log(datosRespuesta)
-                    window.location.href = "/listar"
+                    this.$router.push({name: "listar"});
 
                 })
                 .catch(console.log)
         },
         noBorrarCliente() {
-            window.location.href = '/listar';
+            this.$router.push({name: "listar"});
         }
     }
 }

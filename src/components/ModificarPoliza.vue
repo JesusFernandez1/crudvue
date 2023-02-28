@@ -73,7 +73,7 @@ export default {
     methods:{
 
         obtenerInformacionID(){
-            fetch('http://localhost/poliza/?consultarModificar='+this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?consultarModificar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -86,14 +86,14 @@ export default {
         actualizarRegistro(){
             var datosEnviar={importe: this.poliza.importe, fecha: this.poliza.fecha, estado: this.poliza.estado, observaciones: this.poliza.observaciones}
 
-            fetch('http://localhost/poliza/?actualizar='+this.$route.params.id, {
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?actualizar='+this.$route.params.id, {
                 method:"POST",
                 body:JSON.stringify(datosEnviar)
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta=>{
                 if (JSON.stringify(datosRespuesta) == 'true') {
-                        window.location.href = '/listar';
+                  this.$router.push({name: "listar"});
                 }
            }))
         }

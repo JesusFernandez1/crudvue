@@ -103,7 +103,7 @@ export default {
     },
     methods: {
         consultarPoliza() {
-            fetch('http://localhost/poliza/?consultar=' + this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?consultar=' + this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -134,7 +134,7 @@ export default {
                 .catch(console.log)
         },
         consultarCliente() {
-            fetch('http://localhost/user/?consultar=' + this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?consultar=' + this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -149,7 +149,7 @@ export default {
                 .catch(console.log)
         },
         crearPoliza() {
-            window.location.href = '/crearPoliza';
+            this.$router.push({name: "crearPoliza"});
         }
     }
 }

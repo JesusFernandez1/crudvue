@@ -77,7 +77,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://localhost/user/')
+    fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/')
       .then(response => response.json())
       .then(data => {
         this.clientes = data;
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     buscarPolizas() {
-      fetch(`http://localhost/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}`)
+      fetch(`https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}`)
         .then(response => response.json())
         .then(data => {
           this.polizas = data;
@@ -98,7 +98,7 @@ export default {
         });
     },
     buscarPolizasPorEstado() {
-      fetch(`http://localhost/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}&estado=${this.estadoSeleccionado}`)
+      fetch(`https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}&estado=${this.estadoSeleccionado}`)
         .then(response => response.json())
         .then(data => {
           this.polizas = data;

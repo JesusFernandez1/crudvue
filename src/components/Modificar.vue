@@ -98,7 +98,7 @@ export default {
     methods:{
         obtenerInformacionID(){
           
-            fetch('http://localhost/user/?consultar='+this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?consultar='+this.$route.params.id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -112,19 +112,19 @@ export default {
           var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, provincia: this.provinciaSeleccionada,
                 codigo_postal: this.cliente.codigo_postal, municipio: this.municipioSeleccionado, tipo: this.cliente.tipo}
 
-            fetch('http://localhost/user/?actualizar='+this.$route.params.id, {
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?actualizar='+this.$route.params.id, {
                 method:"POST",
                 body:JSON.stringify(datosEnviar)
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta=>{
               if (JSON.stringify(datosRespuesta) == 'true') {
-                        window.location.href = '/listar';
+                this.$router.push({name: "listar"});
                 } 
             }))
         },
         cargarProvincias() {
-            fetch('http://localhost/provincias/')
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/provincias/')
               .then(respuesta => respuesta.json())
               .then(provincias => {
                 if (JSON.stringify(provincias) != "false") {
@@ -138,7 +138,7 @@ export default {
         },
       cargarMunicipios() {
         if (this.provinciaSeleccionada) {
-           fetch(`http://localhost/municipios/?consultarMunicipio=${this.provinciaSeleccionada}`)
+           fetch(`https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/municipios/?consultarMunicipio=${this.provinciaSeleccionada}`)
             .then(respuesta => respuesta.json())
             .then(municipios => {
               this.municipios = municipios

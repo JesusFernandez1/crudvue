@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         consultarCliente() {
-            fetch('http://localhost/user/')
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/')
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -88,7 +88,7 @@ export default {
                 .catch(console.log)
         },
         crearPoliza(){
-            window.location.href = '/crearPoliza';
+            this.$router.push({name: "crearPoliza"});
         }
     }
 }

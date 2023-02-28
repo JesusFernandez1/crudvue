@@ -78,14 +78,14 @@ export default {
         correo: this.usuario.correo,
         pass: this.usuario.pass,
       };
-      fetch("http://localhost/user/?login", {
+      fetch("https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?login", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           if (JSON.stringify(datosRespuesta) == "true") {
-            window.location.href = "listar";
+            this.$router.push({name: "listar"});
           } else {
             this.error = true;
           }
@@ -95,7 +95,7 @@ export default {
         });
     },
     registerUsuario() {
-      window.location.href = "crear";
+      this.$router.push({name: "crear"});
     },
   },
 };

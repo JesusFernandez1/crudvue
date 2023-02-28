@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     cargarProvincias() {
-      fetch('http://localhost/provincias/')
+      fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/provincias/')
         .then(respuesta => respuesta.json())
         .then(provincias => {
           this.provincias = provincias
@@ -105,7 +105,7 @@ export default {
     },
     cargarMunicipios() {
       if (this.provinciaSeleccionada) {
-        fetch(`http://localhost/municipios/?consultarMunicipio=${this.provinciaSeleccionada}`)
+        fetch(`https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/municipios/?consultarMunicipio=${this.provinciaSeleccionada}`)
           .then(respuesta => respuesta.json())
           .then(municipios => {
             this.municipios = municipios
@@ -120,14 +120,14 @@ export default {
     agregarRegistro(){
             var datosEnviar={nombre: this.cliente.nombre, apellido: this.cliente.apellido, telefono: this.cliente.telefono, provincia: this.provinciaSeleccionada,
                 codigo_postal: this.cliente.codigo_postal, municipio: this.municipioSeleccionado, tipo: this.cliente.tipo}
-            fetch('http://localhost/user/?insertar=1', {
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/?insertar=1', {
                 method:"POST",
                 body:JSON.stringify(datosEnviar)
             })
             .then(respuesta => respuesta.json())
             .then((datosRespuesta => {
                 if (JSON.stringify(datosRespuesta) == 'true') {
-                    window.location.href = '/listar';
+                  this.$router.push({name: "listar"});
                 }  
             }))
         }

@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         consultarPoliza() {
-            fetch('http://localhost/poliza/?consultarBorrar=' + this.$route.params.id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?consultarBorrar=' + this.$route.params.id)
             .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
@@ -75,17 +75,17 @@ export default {
                 .catch(console.log)
         },
         borrarPoliza(id) {
-            fetch('http://localhost/poliza/?borrar=' + id)
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/?borrar=' + id)
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
                     console.log(datosRespuesta)
-                    window.location.href = "/VerPolizas"
+                    this.$router.push({name: "VerPolizas"});
                 })
                 .catch(console.log)
         },
         noBorrarPoliza() {
-            window.location.href = '/VerPolizas';
+            this.$router.push({name: "VerPolizas"});
         }
     }
 }

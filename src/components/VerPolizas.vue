@@ -66,7 +66,7 @@ export default {
     },
     methods: {
         consultarPoliza() {
-            fetch('http://localhost/poliza/')
+            fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/poliza/')
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
 
