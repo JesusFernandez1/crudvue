@@ -35,7 +35,7 @@
                         <option value="Liquidada">Liquidada</option>
                         <option value="Anulada">Anulada</option>
                         <option value="Pre-Anulada">Pre-Anulada</option>
-                        </select>
+                      </select>
                     </div>
 
                     <div class="mb-3">
