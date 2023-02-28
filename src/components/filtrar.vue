@@ -7,12 +7,12 @@
     <form v-on:submit.prevent="buscarPolizas">
       <label for="cliente1">Cliente 1:</label>
       <select id="cliente1" v-model="cliente1">
-        <option v-for="cliente in clientes" :key="cliente.idcliente" :value="cliente.idcliente">{{ cliente.nombre }}</option>
+        <option v-for="cliente in clientes" :key="cliente.idcliente" :value="cliente.idcliente">{{ cliente.idcliente }}</option>
       </select>
 
       <label for="cliente2">Cliente 2:</label>
       <select id="cliente2" v-model="cliente2">
-        <option v-for="cliente in clientes" :key="cliente.idcliente" :value="cliente.idcliente">{{ cliente.nombre }}</option>
+        <option v-for="cliente in clientes" :key="cliente.idcliente" :value="cliente.idcliente">{{ cliente.idcliente }}</option>
       </select>
 
       <label for="fechaInicio">Fecha de inicio:</label>
