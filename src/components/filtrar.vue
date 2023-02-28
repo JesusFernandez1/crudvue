@@ -48,12 +48,12 @@
           <td>
                 <div class="btn-group" role="group" aria-label="">
 
-                    <router-link :to="{name:'polizas',params:{id:poliza.cliente_idcliente}}" style="border-color: white;" class="btn btn-info">Ver cliente</router-link>
+                  <router-link :to="{name:'polizas',params:{id:poliza.cliente_idcliente}}" style="border-color: white;" class="btn btn-info">Ver cliente</router-link>
 
-                    <router-link :to="{name:'modificarpoliza',params:{id:poliza.idpoliza}}" style="border-color: white;" class="btn btn-warning">Modificar</router-link>
+                  <router-link :to="{name:'modificarpoliza',params:{id:poliza.idpoliza}}" style="border-color: white;" class="btn btn-warning">Modificar</router-link>
                                    
-                    <router-link :to="{name:'confirmarEliminarPoliza',params:{id:poliza.idpoliza}}" style="border-color: white;" class="btn btn-danger">Borrar</router-link>
-                </div>
+                  <router-link :to="{name:'confirmarEliminarPoliza',params:{id:poliza.idpoliza}}" style="border-color: white;" class="btn btn-danger">Borrar</router-link>
+              </div>
           </td>
         </tr>
       </tbody>
