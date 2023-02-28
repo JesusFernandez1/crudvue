@@ -24,6 +24,11 @@
       <button type="submit">Buscar</button>
     </form>
 
+<select v-if="polizas.length" v-model="estadoSeleccionado" v-on:change="buscarPolizasPorEstado">
+  <option value="">Todos los estados</option>
+  <option v-for="estado in estados" :key="estado" :value="estado">{{ estado }}</option>
+</select>
+
     <table v-if="polizas.length" class="table">
       <thead>
         <tr>
@@ -34,7 +39,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="poliza in polizas" :key="poliza.id" v-bind:class="{ 'bg-success': poliza.estado == 'Cobrada', 'bg-danger': poliza.estado == 'Anulada', 'bg-warning': poliza.estado == 'A cuenta', 'bg-info': poliza.estado == 'Liquidada', 'bg-secondary': poliza.estado == 'Pre-Anulada' }">
+        <tr v-for="poliza in polizas" :key="poliza.id" v-bind:class="{ 'bg-danger': poliza.estado != 'Liquidada'}">
           <td>{{ poliza.cliente_idcliente }}</td>
           <td>{{ poliza.idpoliza }}</td>
           <td>{{ poliza.fecha }}</td>
@@ -56,6 +61,8 @@ export default {
       fechaFin: '',
       polizas: [],
       clientes: [],
+      estados: ['Cobrada', 'Anulada', 'A cuenta', 'Liquidada', 'Pre-Anulada'],
+      estadoSeleccionado: '',
     };
   },
   mounted() {
@@ -79,6 +86,16 @@ export default {
           console.log(error);
         });
     },
+    buscarPolizasPorEstado() {
+      fetch(`http://localhost/user/?cliente1=${this.cliente1}&cliente2=${this.cliente2}&fechaInicio=${this.fechaInicio}&fechaFin=${this.fechaFin}&estado=${this.estadoSeleccionado}`)
+        .then(response => response.json())
+        .then(data => {
+          this.polizas = data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   },
 };
 </script>
