@@ -93,7 +93,7 @@ export default {
     },
     created:function(){
         this.obtenerInformacionID();
-        this.cargarProvincias()
+        this.cargarProvincias();
     },
     methods:{
         obtenerInformacionID(){
@@ -124,12 +124,15 @@ export default {
             }))
         },
         cargarProvincias() {
-      fetch('http://localhost/provincias/')
-        .then(respuesta => respuesta.json())
-        .then(provincias => {
-          this.provincias = provincias
-        })
-        .catch(error => {
+            fetch('http://localhost/provincias/')
+              .then(respuesta => respuesta.json())
+              .then(provincias => {
+                if (JSON.stringify(provincias) != "false") {
+                  this.provincias = provincias;
+                  //this.cargarMunicipios(this.cliente.provincia);
+                } 
+            })
+          .catch(error => {
           console.log(error)
         })
         },
