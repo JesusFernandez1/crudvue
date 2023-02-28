@@ -35,7 +35,7 @@
 
                     <div class="mb-3">
                     <label for="provincia">Provincia:</label>
-                    <select v-model="provinciaSeleccionada" required name="provincia" id="provincia" class="form-select" aria-label="Default select example">
+                    <select v-model="provinciaSeleccionada" name="provincia" id="provincia" class="form-select" aria-label="Default select example">
                       <option value="">{{ cliente.provincia }}</option>
                       <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id" :selected="provincia.id === cliente.provincia">{{ provincia.provincia }}</option>
                     </select>
@@ -50,7 +50,7 @@
 
                     <div class="mb-3">
                     <label for="municipio" class="form-label">Municipio:</label>
-                    <select v-model="municipioSeleccionado" required name="municipio" id="municipio" class="form-select" aria-label="Default select example">
+                    <select v-model="municipioSeleccionado" name="municipio" id="municipio" class="form-select" aria-label="Default select example">
                       <option value="">{{ cliente.municipio }}</option>
                       <option v-for="municipio in municipios" :key="municipio.id" :value="municipio.id" :selected="municipio.id === cliente.municipio">{{ municipio.municipio }}</option>
                     </select>
