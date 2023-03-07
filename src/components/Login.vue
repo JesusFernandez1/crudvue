@@ -43,19 +43,6 @@
                   <button type="submit" class="btn btn-success">Aceptar</button>
                 </form>
               </div>
-              <form v-on:submit.prevent="registerUsuario()">
-                <div>
-                  <p class="mb-0">
-                    Do you want to add a new user?
-                    <input
-                      type="submit"
-                      name="register"
-                      id="register"
-                      value="Add new client"
-                    />
-                  </p>
-                </div>
-              </form>
             </div>
           </div>
         </div>
@@ -93,10 +80,7 @@ export default {
         .catch(() => {
           this.error = true;
         });
-    },
-    registerUsuario() {
-      this.$router.push({name: "crear"});
-    },
+    }
   },
 };
 </script>

@@ -16,6 +16,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/filtrar">Filtrar</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/crear">Crear cliente</router-link>
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
