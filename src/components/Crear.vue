@@ -89,7 +89,7 @@
 
                   <div class="btn-group" role="group" aria-label="Button group name">
                     <button type="submit" class="btn btn-success">Aceptar</button>
-                    <router-link :to="{name:'login'}" class="btn btn-warning">Cancelar</router-link>
+                    <router-link :to="{name:'listar'}" class="btn btn-warning">Cancelar</router-link>
                   </div>
 
                 </form>

@@ -22,6 +22,7 @@
                     />
                     <label class="form-label" for="typecorreoX">Correo</label>
                   </div>
+                  <p>jesus@gmail.com</p>
                   <div class="form-outline form-white mb-4">
                     <input
                       type="password"
@@ -34,6 +35,7 @@
                       >Password</label
                     >
                   </div>
+                  <p>1233</p>
                   <span id="errorLog" style="color: red" v-if="error"
                     >Correo y/o contraseña erróneos</span
                   >

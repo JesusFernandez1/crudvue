@@ -40,7 +40,7 @@ if (isset($_GET["cliente1"]) && isset($_GET["cliente2"]) && isset($_GET["fechaIn
         $sql = "SELECT * FROM poliza WHERE cliente_idcliente BETWEEN LEAST('$cliente1', '$cliente2') AND GREATEST('$cliente1', '$cliente2') AND fecha BETWEEN '$fechaInicio' AND '$fechaFin'";
     } else {
         // Construir la consulta SQL
-        $sql = "SELECT * FROM poliza WHERE estado = '$estado' AND cliente_idcliente IN ('$cliente1', '$cliente2') AND fecha BETWEEN '$fechaInicio' AND '$fechaFin'";
+        $sql = "SELECT * FROM poliza WHERE estado = '$estado' AND cliente_idcliente BETWEEN LEAST('$cliente1', '$cliente2') AND GREATEST('$cliente1', '$cliente2') AND fecha BETWEEN '$fechaInicio' AND '$fechaFin'";
     }
 
     // Ejecutar la consulta y guardar los resultados en un array asociativo
@@ -140,7 +140,7 @@ if (isset($_GET["actualizar"])) {
     $municipio = $data->municipio;
     $tipo = $data->tipo;
 
-    if ($provincia == "") {
+    if ($provincia == "" || $municipio == "") {
 
         $resultadoProvincia = mysqli_query($conexionBD, "SELECT provincia FROM cliente WHERE idcliente = $idcliente");
         $provinciaNombre = mysqli_fetch_assoc($resultadoProvincia)['provincia'];
