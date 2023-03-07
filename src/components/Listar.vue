@@ -74,10 +74,8 @@ import 'jquery/dist/jquery.min.js';
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
-
 export default {
     data() {
-
         return {
             clientes: []
         }
@@ -90,12 +88,9 @@ export default {
             fetch('https://ieslamarisma.net/proyectos/2023/jesusfernandez/Vue/user/')
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
-
-
                     console.log(datosRespuesta)
                     this.clientes = []
                     if (typeof datosRespuesta[0].success === 'undefined') {
-
                         this.clientes = datosRespuesta;
                     }
                     this.$nextTick(function () {
@@ -111,9 +106,7 @@ export default {
 }
 </script>
 <style>
-
 #listado th {
     text-align: center;
 }
-
 </style>
